@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway Booking</title>
+  <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+<body>
+
+  <header>
+    <h1>Railway Booking</h1>
+    <nav>
+      <ul>
+    
+        <li><a href="#">Book Tickets</a></li>
+        <li class="right-options">
+            <a href="/login-page">Login</a>
+            <a href="/register-page">Signup</a>
+            <a href="#">Help</a>
+          </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="search">
+    <!-- <h2>Search Trains</h2> -->
+    <form action="search-train" method="post">
+        <div class= "input-box">
+          <h2>Search Trains</h2>
+      <label for="from">From:</label>
+      <input type="text" id="from" placeholder="Enter departure station id" name="Departure_station_id" required>
+      <label for="to">To:</label>
+      <input type="text" id="to" placeholder="Enter arrival station id" name="Arrival_station_id" required>
+      <label for="Departure Day">Departure Day:</label>
+      <input type="text" id="Departure Day" placeholder="Enter departure day" name="Departure_day" required>
+      <button type="submit">Search</button>
+    </div>
+      <!-- <button type="submit">Search</button> -->
+    </form>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2024 Railway Booking</p>
+  </footer>
+
+</body>
+</html>
