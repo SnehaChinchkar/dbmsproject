@@ -1,0 +1,11 @@
+[{
+    "Train_id":1,
+    "Train_name":"Express 1",
+    "Departure_station_id":101,
+    "Arrival_station_id":201,
+    "Departure_time":"08:00:00",
+    "Arrival_time":"12:00:00",
+    "Total_seats":400,
+    "Available_seats":400,
+    "Fare ":500.00
+}]

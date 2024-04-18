@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Result</title>
+  <link rel="stylesheet" href="/stylesheets/home.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .result-item {
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+    }
+
+    .result-item p {
+      margin: 5px 0;
+    }
+    header h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="heading"><a href="/">Railway Booking</a></h1>
+    <nav>
+      <ul>
+        <li><a href="#">Book Tickets</a></li>
+        <li><a href="/login-page">Login</a></li>
+        <li><a href="/register-page">Signup</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Search Result</h1>
+
+    <% result1.forEach(function(item) { %>
+      <div class="result-item">
+        <p><strong>Departure Station ID:</strong> <%= item.Departure_station_id %></p>
+        <p><strong>Arrival Station ID:</strong> <%= item.Arrival_station_id %></p>
+        <p><strong>Train ID Found:</strong> <%= item.Train_id %></p>
+        <p><strong>Train:</strong> <%= item.Train_name %></p>
+        <!-- Add other attributes as needed -->
+      </div>
+    <% }); %>
+  </div>
+</body>
+</html>

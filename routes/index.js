@@ -9,12 +9,34 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 
 
-// router.get('/search_result', async function(req, res) {
-//   const result1 = await userModel.find({ Departure_station_id: req.trains.Departure_station_id ,Arrival_station_id:req.trains.Arrival_station_id });
-  
-//   const dep_station= result1.Departure_station_id;
-//   res.render('search_result', { depstation:result1[0].Departure_station_id, arrstation:result1[0].Arrival_station_id, train:result1[0].Train_id}); // Pass the username to the profile page
-// });
+router.get('/view-result', async function(req, res) {
+  // Access parameters from the URL query string using req.query
+  const departureStationId = req.query.Departure_station_id;
+  const arrivalStationId = req.query.Arrival_station_id;
+  // console.log(departureStationId, arrivalStationId); 
+  try {
+    let result1 = await trainModel.find({ 
+      Departure_station_id: departureStationId,
+      Arrival_station_id: arrivalStationId 
+    });
+    // console.log('Result:', result1);
+    res.render('search_result', { result1: result1 });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+
+router.post('/search-result', function(req, res) {
+  // Extract the parameters from the request body
+  const departureStationId = req.body.Departure_station_id;
+  const arrivalStationId = req.body.Arrival_station_id;
+
+  // Redirect to /view-result with the parameters
+  res.redirect(`/view-result?Departure_station_id=${departureStationId}&Arrival_station_id=${arrivalStationId}`);
+});
+
 
 router.get('/', function(req, res, next) {
   res.render('home');
