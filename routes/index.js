@@ -10,16 +10,16 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 
 router.get('/view-result', async function(req, res) {
-  // Access parameters from the URL query string using req.query
   const departureStationId = req.query.Departure_station_id;
   const arrivalStationId = req.query.Arrival_station_id;
-  // console.log(departureStationId, arrivalStationId); 
+  const dep_day=req.query.Departure_day;
+  console.log(dep_day);
   try {
     let result1 = await trainModel.find({ 
       Departure_station_id: departureStationId,
-      Arrival_station_id: arrivalStationId 
+      Arrival_station_id: arrivalStationId,
+      Departure_day: { $in: dep_day }
     });
-    // console.log('Result:', result1);
     res.render('search_result', { result1: result1 });
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -28,13 +28,15 @@ router.get('/view-result', async function(req, res) {
 });
 
 
+
+
 router.post('/search-result', function(req, res) {
   // Extract the parameters from the request body
   const departureStationId = req.body.Departure_station_id;
   const arrivalStationId = req.body.Arrival_station_id;
-
+  const dep_day=req.body.Departure_day;
   // Redirect to /view-result with the parameters
-  res.redirect(`/view-result?Departure_station_id=${departureStationId}&Arrival_station_id=${arrivalStationId}`);
+  res.redirect(`/view-result?Departure_station_id=${departureStationId}&Arrival_station_id=${arrivalStationId}&Departure_day=${dep_day}`);
 });
 
 

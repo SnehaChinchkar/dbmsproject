@@ -86,10 +86,14 @@
 
     <% result1.forEach(function(item) { %>
       <div class="result-item">
+        <p><strong>Train ID:</strong> <%= item.Train_id %></p>
+        <p><strong>Train Name:</strong> <%= item.Train_name %></p>
         <p><strong>Departure Station ID:</strong> <%= item.Departure_station_id %></p>
         <p><strong>Arrival Station ID:</strong> <%= item.Arrival_station_id %></p>
-        <p><strong>Train ID Found:</strong> <%= item.Train_id %></p>
-        <p><strong>Train:</strong> <%= item.Train_name %></p>
+        <p><strong>Departure Time:</strong> <%= item.Departure_time %></p>
+        <p><strong>Arrival Time:</strong> <%= item.Arrival_time %></p>
+        <p><strong>Total Seats:</strong> <%= item.Total_seats%></p>
+        <p><strong>Fare: ₹</strong> <%= item.Fare%></p>
         <!-- Add other attributes as needed -->
       </div>
     <% }); %>
