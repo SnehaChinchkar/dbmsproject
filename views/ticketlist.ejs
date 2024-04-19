@@ -101,16 +101,23 @@ nav {
   <div class="container">
     <h1>Search Result</h1>
 
-    <% result1.forEach(function(item) { %>
+    <% result2.forEach(function(item) { %>
       <div class="result-item">
+        <p><strong>Name of user:</strong> <%= item.username %></p>
+        <p><strong>Name of Passenger:</strong> <%= item.name %></p>
+        <p><strong>Gender:</strong> <%= item.gender %></p>
+        <p><strong>Age:</strong> <%= item.age %></p>
+        <p><strong>Contact:</strong> <%= item.phone %></p>
         <p><strong>Train ID:</strong> <%= item.Train_id %></p>
         <p><strong>Train Name:</strong> <%= item.Train_name %></p>
+        <p><strong>Departure day:</strong> <%= item.Departure_day %></p>
         <p><strong>Departure Station ID:</strong> <%= item.Departure_station_id %></p>
         <p><strong>Arrival Station ID:</strong> <%= item.Arrival_station_id %></p>
-        <p><strong>Departure Time:</strong> <%= item.Departure_time %></p>
-        <p><strong>Arrival Time:</strong> <%= item.Arrival_time %></p>
-        <p><strong>Total Seats:</strong> <%= item.Total_seats%></p>
-        <p><strong>Fare: ₹</strong> <%= item.Fare%></p>
+        <p><strong>Number of tickets:</strong> <%= item.Tickets %></p>
+        <!-- <p><strong>Departure Time:</strong> <%= item.Departure_time %></p> -->
+        <!-- <p><strong>Arrival Time:</strong> <%= item.Arrival_time %></p> -->
+        <!-- <p><strong>Total Seats:</strong> <%= item.Total_seats%></p> -->
+        <!-- <p><strong>Fare: ₹</strong> <%= item.Fare%></p> -->
         <!-- Add other attributes as needed -->
       </div>
     <% }); %>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<link rel="stylesheet" href="/stylesheets/book.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="/"><img src="/images/logo.jpg" alt="Railway Booking Logo"></a></div>
+        <nav>
+            <ul>
+              <li class="right-options">
+                  <a href="/book-page">Book Tickets</a>
+                  <a href="/login-page">Login</a>
+                  <a href="/register-page">Signup</a>
+                  <a href="/profile">Profile</a>
+                  <a href="/help">Help</a>
+                </li>
+            </ul>
+          </nav>
+      </header>
+<div class="container">
+    <div class="heading"><h1>Book Ticket</h1></div>
+    
+    <div class="form-container">
+        <!-- <h2><a href="#passenger-form" id="add-passenger-link">Add a New Passenger</a></h2> -->
+        <form id="passenger-form" action="/book-save" method="post">
+            <label for="name">Passenger's name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="1" required>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+            <label for="departure">Departure Station id:</label>
+            <input type="text" id="departure" name="Departure_station_id" required>
+            <label for="arrival">Arrival Station id:</label>
+            <input type="text" id="arrival" name="Arrival_station_id" required>
+            <label for="Trainid">Train id:</label>
+            <input type="text" id="trainid" name="Train_id" required>
+            <label for="Trainname">Train Name:</label>
+            <input type="text" id="trainname" name="Train_name" required>
+            <label for="Departure_day">Departure Day:</label>
+            <input type="text" id="Departure_day" name="Departure_day" required>
+            <label for="tickets">Number of tickets:</label>
+            <input type="number" id="tickets" name="Tickets" min="1" required>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+</body>
+</html>

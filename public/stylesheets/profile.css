@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-image: url(traintrack.jpg); */
+    background-color: #d9e3f5;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+}
+.heading {
+    padding: 5px 10px; /* Adjusted padding */
+    background-color: rgb(20, 31, 90);
+    height: 40px;
+    /* width: fit-content; */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.profile-info {
+    margin-bottom: 30px;
+}
+.profile-info label {
+    font-weight: bold;
+}
+#add-passenger-link {
+    color: #031b35; /* Blue color */
+    text-decoration: none; /* Remove underline */
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+}
+.form-container form {
+    margin-bottom: 20px;
+}
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: rgb(5, 5, 65)
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="number"],
+.form-container select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-container input[type="tel"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-container input[type="submit"] {
+    background-color: rgb(20, 31, 90);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-container input[type="submit"]:hover {
+    background-color: #166bc6;
+}
+/* Hide the form by default */
+#passenger-form {
+    display: none;
+}
+
+/* Show the form when it is the target */
+#passenger-form:target {
+    display: block;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(20, 31, 90); 
+    color: #fff;
+    padding: 7px; 
+    align-items: center;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+ nav ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px; /* Adjust spacing between list items */
+    
+}
+
+nav ul li.right-options {
+    float: right;
+}
+
+nav ul li.right-options a {
+    margin-left: 20px; /* Adjust spacing between right-aligned links */
+    color: #ffffff;
+    text-decoration: none;
+}
+  .logo img {
+    max-height: 60px; /* Adjust the height as needed */
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+
+
+.ticket-list-link {
+    margin-top: 20px;
+}
+
+.ticket-list-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.ticket-list-link a:hover {
+    background-color: #0056b3;
+}

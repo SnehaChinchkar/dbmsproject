@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userModel=require("./users");
+const ticketModel=require("./tickets");
 const trainModel=require("./trains");
 const passport = require('passport');
 
@@ -53,16 +54,66 @@ router.get('/register-page',function(req,res){
 // router.get('/profile',isLoggedIn,function(req,res,next){
 //   res.render('profile');
 // })
-
+router.get('/help',function(req,res){
+  res.render('help');
+})
 router.get('/profile', isLoggedIn, async function(req, res) {
   const result1 = await userModel.find({ username: req.user.username });
   
   const emailid= result1.email;
   res.render('profile', { username: req.user.username , email:result1[0].email}); // Pass the username to the profile page
 });
+router.get('/book-page', function(req,res){
+  res.render('book');
+})
+  
+router.get('/view-ticket', async function(req,res){
+  const result2=await ticketModel.find({ username: req.user.username });
+  res.render('ticketlist',{result2:result2});
+})
+router.post('/book-save',isLoggedIn,async function(req, res) {
+  var ticketData = {
+    username:req.user.username,
+    name: req.body.name,
+    gender: req.body.gender,
+    age: req.body.age,
+    phone: req.body.phone,
+    Departure_station_id: req.body.Departure_station_id,
+    Arrival_station_id: req.body.Arrival_station_id,
+    Train_id: req.body.Train_id,
+    Train_name: req.body.Train_name,
+    Tickets: req.body.Tickets,
+    Departure_day:req.body.Departure_day
+  };
+
+
+  const train = await trainModel.findOne({Train_id:req.body.Train_id,Departure_station_id:req.body.Departure_station_id,Arrival_station_id: req.body.Arrival_station_id});
+
+    if (!train) {
+      return res.status(404).send('Train not found');
+    }
+    if (train.available_tickets < ticketData.Tickets) {
+      return res.status(400).send('Not enough available tickets');
+    }
+    const newvalue=train.Available_seats - ticketData.Tickets;
+    const update ={Available_seats:newvalue}
+    
+    await train.updateOne(update);
 
 
 
+  ticketModel.create(ticketData)
+    .then(savedTicket => {
+      // console.log('Ticket saved successfully:', savedTicket);
+      // res.send("Ticket saved successfully"); 
+      res.redirect('/view-ticket');
+    })
+    .catch(err => {
+      console.error('Error saving ticket:', err);
+      res.status(500).send('Error saving ticket');
+    });
+    
+});
 
 
 router.post('/register',function(req,res){
@@ -79,7 +130,7 @@ userModel.register(userdata,req.body.password).then(function(registereduser){
 });
 router.post('/login',passport.authenticate("local",{
   successRedirect:"/profile",
-  failureRedirect:'/'
+  failureRedirect:'/login-page'
 }),function(req,res){ })
 
 router.get('/logout',function(req,res,next){
