@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const User = require('./routes/users'); // or './models/user' if you moved it
+const User = require('./models/users'); // or './models/user' if you moved it
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected...'))

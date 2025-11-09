@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const userModel = require('../routes/users');
-const ticketModel = require('../routes/tickets');
-const trainModel = require('../routes/trains');
+const userModel = require('../models/users');
+const ticketModel = require('../models/tickets');
+const trainModel = require('../models/trains');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 
@@ -113,18 +113,33 @@ router.post('/book-save', isLoggedIn, async function(req, res) {
     });
 });
 
-router.post('/register', function(req, res) {
-  const userdata = new userModel({
-    username: req.body.username,
-    email: req.body.email
-  });
+router.post('/register', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
 
-  userModel.register(userdata, req.body.password)
-    .then(() => {
-      passport.authenticate('local')(req, res, function() {
-        res.redirect('/profile');
-      });
+    if (!username || !email || !password) {
+      return res.status(400).send('All fields are required');
+    }
+
+    const existingUser = await userModel.findOne({
+      $or: [{ username }, { email }]
     });
+    if (existingUser) {
+      return res.status(400).send('Username or email already exists');
+    }
+
+    const newUser = new userModel({ username, email });
+    await userModel.register(newUser, password);
+
+    console.log('✅ User registered successfully:', username);
+
+    passport.authenticate('local')(req, res, () => {
+      res.redirect('/profile');
+    });
+  } catch (err) {
+    console.error('❌ Registration error:', err);
+    res.status(500).send('Registration failed: ' + err.message);
+  }
 });
 
 router.post('/login', function(req, res, next) {

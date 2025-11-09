@@ -12,16 +12,27 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 
 const indexRouter = require('./routes/index');
-const userModel = require('./routes/users');
+const userModel = require('./models/users');
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected successfully'))
-.catch(err => console.error('MongoDB connection error:', err));
+const connectWithRetry = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+      socketTimeoutMS: 45000, // Close sockets after 45s
+    });
+    console.log('MongoDB connected successfully');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    console.log('Retrying connection in 5 seconds...');
+    setTimeout(connectWithRetry, 5000);
+  }
+};
+
+connectWithRetry();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
