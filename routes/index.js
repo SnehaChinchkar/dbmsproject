@@ -46,6 +46,7 @@ router.get('/', function(req, res) {
   res.render('home');
 });
 
+
 router.get('/login-page', function(req, res) {
   res.render('index');
 });
@@ -128,12 +129,17 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/login-page'
 }));
 
-router.get('/logout', function(req, res, next) {
-  req.logout(function(err) {
+
+router.get('/logout', function (req, res, next) {
+  req.logout(function (err) {
     if (err) return next(err);
-    res.redirect('/login-page');
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
   });
 });
+
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
