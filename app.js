@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 passport.use(new localStrategy(userModel.authenticate()));
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
-
+app.set('trust proxy', 1);
 app.use(expressSession({
   secret: process.env.SESSION_SECRET || "fallbackSecret",
   resave: false,
