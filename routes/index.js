@@ -43,7 +43,7 @@ router.post('/search-result', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-  res.render('home');
+  res.render('home', { currentUser: req.user });
 });
 
 
