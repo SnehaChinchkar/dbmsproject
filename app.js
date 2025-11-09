@@ -7,6 +7,7 @@ const logger = require('morgan');
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const localStrategy = require('passport-local');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 
@@ -25,6 +26,11 @@ mongoose.connect(process.env.MONGO_URI, {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Configure passport before session middleware
+passport.use(new localStrategy(userModel.authenticate()));
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
+
 app.use(expressSession({
   secret: process.env.SESSION_SECRET || "fallbackSecret",
   resave: false,
@@ -34,9 +40,10 @@ app.use(expressSession({
     collectionName: 'sessions'
   }),
   cookie: {
+    // secure: false, // Set to false to work with HTTP and HTTPS
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24
+    maxAge: 1000 * 60 * 60 * 24 // 24 hours
   }
 }));
 
@@ -51,8 +58,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Make user and flash messages available to all templates
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
   next();
 });
 

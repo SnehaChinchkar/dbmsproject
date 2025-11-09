@@ -9,6 +9,11 @@
 </head>
 <body>
     <div class="wrapper">
+        <% if (error && error.length > 0) { %>
+            <div class="error-message" style="color: red; margin-bottom: 10px; text-align: center;">
+                <%= error %>
+            </div>
+        <% } %>
         <form action="/login" method="post">
         <h1>Login</h1>
         <div class="input-box">

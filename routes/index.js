@@ -48,10 +48,13 @@ router.get('/', function(req, res) {
 
 
 router.get('/login-page', function(req, res) {
-  res.render('index');
+  if (req.isAuthenticated()) {
+    return res.redirect('/profile');
+  }
+  res.render('index', { error: req.flash('error') });
 });
 
-router.get('/register-page', function(req, res) {
+router.get('/register', function(req, res) {
   res.render('registerpg');
 });
 
@@ -124,10 +127,34 @@ router.post('/register', function(req, res) {
     });
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
-  failureRedirect: '/login-page'
-}));
+router.post('/login', function(req, res, next) {
+  if (!req.body.username || !req.body.password) {
+    req.flash('error', 'Username and password are required');
+    return res.redirect('/login-page');
+  }
+
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      console.error('Login error:', err);
+      req.flash('error', 'An error occurred during login');
+      return res.redirect('/login-page');
+    }
+    if (!user) {
+      console.log('Login failed:', info);
+      req.flash('error', 'Invalid username or password');
+      return res.redirect('/login-page');
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        console.error('Login error:', err);
+        req.flash('error', 'An error occurred during login');
+        return res.redirect('/login-page');
+      }
+      console.log('Login successful for user:', user.username);
+      return res.redirect('/profile');
+    });
+  })(req, res, next);
+});
 
 
 router.get('/logout', function (req, res, next) {
