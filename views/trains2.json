@@ -1,11 +1,122 @@
-[{
-    "Train_id":1,
-    "Train_name":"Express 1",
-    "Departure_station_id":101,
-    "Arrival_station_id":201,
-    "Departure_time":"08:00:00",
-    "Arrival_time":"12:00:00",
-    "Total_seats":400,
-    "Available_seats":400,
-    "Fare ":500.00
-}]
+[
+  {
+    "Train_id": 1,
+    "Train_name": "Express 1",
+    "Departure_station_id": 101,
+    "Arrival_station_id": 201,
+    "Departure_time": "08:00:00",
+    "Arrival_time": "12:00:00",
+    "Total_seats": 400,
+    "Available_seats": 400,
+    "Fare": 500.00,
+    "Departure_day": ["Monday", "Wednesday", "Friday"]
+  },
+  {
+    "Train_id": 2,
+    "Train_name": "Express 2",
+    "Departure_station_id": 102,
+    "Arrival_station_id": 202,
+    "Departure_time": "10:30:00",
+    "Arrival_time": "15:00:00",
+    "Total_seats": 300,
+    "Available_seats": 300,
+    "Fare": 450.00,
+    "Departure_day": ["Tuesday", "Thursday", "Saturday"]
+  },
+  {
+    "Train_id": 3,
+    "Train_name": "Superfast 1",
+    "Departure_station_id": 103,
+    "Arrival_station_id": 203,
+    "Departure_time": "06:00:00",
+    "Arrival_time": "11:00:00",
+    "Total_seats": 350,
+    "Available_seats": 350,
+    "Fare": 600.00,
+    "Departure_day": ["Monday", "Tuesday", "Wednesday", "Friday"]
+  },
+  {
+    "Train_id": 4,
+    "Train_name": "City Express",
+    "Departure_station_id": 101,
+    "Arrival_station_id": 204,
+    "Departure_time": "14:00:00",
+    "Arrival_time": "18:30:00",
+    "Total_seats": 200,
+    "Available_seats": 200,
+    "Fare": 400.00,
+    "Departure_day": ["Monday", "Thursday"]
+  },
+  {
+    "Train_id": 5,
+    "Train_name": "InterCity 1",
+    "Departure_station_id": 104,
+    "Arrival_station_id": 204,
+    "Departure_time": "09:15:00",
+    "Arrival_time": "13:00:00",
+    "Total_seats": 250,
+    "Available_seats": 250,
+    "Fare": 550.00,
+    "Departure_day": ["Wednesday", "Saturday"]
+  },
+  {
+    "Train_id": 6,
+    "Train_name": "Night Rider",
+    "Departure_station_id": 105,
+    "Arrival_station_id": 205,
+    "Departure_time": "21:30:00",
+    "Arrival_time": "06:00:00",
+    "Total_seats": 500,
+    "Available_seats": 500,
+    "Fare": 750.00,
+    "Departure_day": ["Daily"]
+  },
+  {
+    "Train_id": 7,
+    "Train_name": "Morning Star",
+    "Departure_station_id": 106,
+    "Arrival_station_id": 206,
+    "Departure_time": "05:45:00",
+    "Arrival_time": "09:45:00",
+    "Total_seats": 300,
+    "Available_seats": 300,
+    "Fare": 480.00,
+    "Departure_day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  },
+  {
+    "Train_id": 8,
+    "Train_name": "Metro Link",
+    "Departure_station_id": 107,
+    "Arrival_station_id": 207,
+    "Departure_time": "07:00:00",
+    "Arrival_time": "10:00:00",
+    "Total_seats": 280,
+    "Available_seats": 280,
+    "Fare": 350.00,
+    "Departure_day": ["Sunday", "Monday", "Wednesday", "Friday"]
+  },
+  {
+    "Train_id": 9,
+    "Train_name": "Rajdhani Express",
+    "Departure_station_id": 108,
+    "Arrival_station_id": 208,
+    "Departure_time": "18:00:00",
+    "Arrival_time": "06:00:00",
+    "Total_seats": 600,
+    "Available_seats": 600,
+    "Fare": 1200.00,
+    "Departure_day": ["Monday", "Thursday", "Saturday"]
+  },
+  {
+    "Train_id": 10,
+    "Train_name": "Coastal Line",
+    "Departure_station_id": 109,
+    "Arrival_station_id": 209,
+    "Departure_time": "11:00:00",
+    "Arrival_time": "15:30:00",
+    "Total_seats": 320,
+    "Available_seats": 320,
+    "Fare": 420.00,
+    "Departure_day": ["Tuesday", "Friday", "Sunday"]
+  }
+]

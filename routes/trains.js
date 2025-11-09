@@ -1,27 +1,47 @@
-const mongoose =require ("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/practiceUser");
+const mongoose = require('mongoose');
 
-const plm = require("passport-local-mongoose");
+const trainSchema = new mongoose.Schema({
+  Train_id: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  Train_name: {
+    type: String,
+    required: true
+  },
+  Departure_station_id: {
+    type: Number,
+    required: true
+  },
+  Arrival_station_id: {
+    type: Number,
+    required: true
+  },
+  Departure_time: {
+    type: String,
+    required: true
+  },
+  Arrival_time: {
+    type: String,
+    required: true
+  },
+  Total_seats: {
+    type: Number,
+    required: true
+  },
+  Available_seats: {
+    type: Number,
+    required: true
+  },
+  Fare: {
+    type: Number,
+    required: true
+  },
+  Departure_day: {
+    type: [String],
+    default: []
+  }
+});
 
-const trainschema=mongoose.Schema({
-    username: String,
-    email: String,
-    password:String,
-    // secret:String
-        Train_id: Number,
-        Train_name: String,
-        Departure_station_id :Number,
-        Arrival_station_id :Number,
-        Departure_time :String,
-        Arrival_time :String,
-        Total_seats :Number,
-        Available_seats:Number,
-        Fare :Number,
-        Departure_day :{
-            type:Array,
-            default:[]
-        }
-  
-  });
-  trainschema.plugin(plm);
-  module.exports= mongoose.model("trains",trainschema);
+module.exports = mongoose.model('Train', trainSchema);
